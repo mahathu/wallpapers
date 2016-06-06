@@ -10,15 +10,16 @@ function add_images(img_arr){
 	var container = $("#wp-container");
 	var i=0;
 	var imageAddInterval = setInterval(function(){
-		var img_url = img_arr[i].substring(1);
+		var thumb_url = img_arr[i].substring(1);
+		var img_url = thumb_url.replace('/thumbs', '');
 
 		var element = $("<div>", {class: "image-wrapper"});
 
-		element.html("<div class='img-menu-bg'><div class='img-menu-btn'><i class='fa fa-eye' aria-hidden='true'></i> <span class='btn-text'>View</span></div><div class='img-menu-btn'><i class='fa fa-download' aria-hidden='true'></i> <span class='btn-text'>Download</span></div></div>");
+		element.html("<div class='img-menu-bg'><div class='img-menu-btn'><a href='javascript:preview(\""+img_url+"\")'><i class='fa fa-eye' aria-hidden='true'></i> <span class='btn-text'>View</span></a></div><div class='img-menu-btn'><a href='" + img_url + "' download='background.jpg'><i class='fa fa-download' aria-hidden='true'></i> <span class='btn-text'>Download</span></a></div></div>");
 		// element.width(image_width);
 		// element.height(image_height);
 
-		element.css('background-image', 'url(' + img_url + ')');
+		element.css('background-image', 'url(' + thumb_url + ')');
 		element.css('display', 'none');
 		container.append(element);
 		element.fadeIn(fade_in_time*2);
@@ -30,7 +31,7 @@ function add_images(img_arr){
 	}, fade_in_time);
 
 	/*for(var i=0; i<amount; i++){
-		var img_url = folder+image_titles[Math.floor(Math.random() * image_titles.length)]+file_ending;
+		var thumb_url = folder+image_titles[Math.floor(Math.random() * image_titles.length)]+file_ending;
 		
 		var element = $("<div>", {class: "image-wrapper"});
 
@@ -38,7 +39,7 @@ function add_images(img_arr){
 		// element.width(image_width);
 		// element.height(image_height);
 
-		element.css('background-image', 'url(' + img_url + ')');
+		element.css('background-image', 'url(' + thumb_url + ')');
 
 		container.append(element);
 		setTimeout(function(){element.fadeIn(4000)}, 400);
@@ -63,6 +64,20 @@ function fetch_images(){
 	        });
 	        add_images(img_arr);
 	    }
+	});
+}
+
+function preview(img_url){
+	var preview_box = $("#img-preview");
+	var preview_bg = $("#img-preview-background");
+
+	preview_box.css('background-image', 'url(' + img_url + ')');
+	preview_box.fadeIn(100);
+	preview_bg.fadeIn(100);
+
+	$( "html" ).click(function() {
+	  preview_box.fadeOut(150);
+	  preview_bg.fadeOut(150);
 	});
 }
 
@@ -114,6 +129,9 @@ function load_categories(){
 }
 
 function set_category(category){
+	if(category == $(".menu-navigation").find(".active a").html())
+		return;
+
 	$(".menu-navigation").find(".active").removeClass("active");
 
 	var obj = ($("li:contains('"+category+"')"));

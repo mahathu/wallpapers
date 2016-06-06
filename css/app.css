@@ -59,6 +59,29 @@ html{overflow-y: scroll;}
 	background-color: white;
 }
 
+#img-preview{
+	z-index: 10;
+	position: fixed;
+	margin: calc(5% - 51px) 5% auto 5%;
+	width: 90%;
+	height: 90%;
+	background-size: 100%;
+	font-size: 0;
+	display: none;
+}
+
+#img-preview-background{
+	z-index: 9;
+	font-size: 0;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	background-color: rgba(0,0,0,.95);
+}
+
 #wp-container{
 	padding-top: 51px;
 }
@@ -86,8 +109,7 @@ html{overflow-y: scroll;}
 
 .img-menu-bg{
 	visibility: hidden;
-	background-color: black;
-	opacity: .7;
+	background-color: rgba(0,0,0,.7);
 	width: 100%;
 	height: 100%;
 
@@ -108,7 +130,11 @@ html{overflow-y: scroll;}
 	cursor: pointer;
 }
 
-.img-menu-btn:hover{
+.img-menu-btn a{
+	color: white;
+}
+
+.img-menu-btn:hover, .img-menu-btn:hover a{
 	border-color: #3CC76A;
 	color: #3CC76A;
 }
