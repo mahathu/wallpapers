@@ -15,7 +15,7 @@ function add_images(img_arr){
 
 		var element = $("<div>", {class: "image-wrapper"});
 
-		element.html("<div class='img-menu-bg'><div class='img-menu-btn'><a href='javascript:preview(\""+img_url+"\")'><i class='fa fa-eye' aria-hidden='true'></i> <span class='btn-text'>View</span></a></div><div class='img-menu-btn'><a href='" + img_url + "' download='background.jpg'><i class='fa fa-download' aria-hidden='true'></i> <span class='btn-text'>Download</span></a></div></div>");
+		element.html("<div class='img-menu-bg'><div class='img-menu-btn'><a href='javascript:preview(\""+img_url+"\")'><i class='fa fa-eye' aria-hidden='true'></i> <span class='btn-text'>preView</span></a></div><div class='img-menu-btn'><a href='" + img_url + "' download='background.jpg'><i class='fa fa-download' aria-hidden='true'></i> <span class='btn-text'>Download</span></a></div></div>");
 		// element.width(image_width);
 		// element.height(image_height);
 
@@ -71,7 +71,10 @@ function preview(img_url){
 	var preview_box = $("#img-preview");
 	var preview_bg = $("#img-preview-background");
 
-	preview_box.css('background-image', 'url(' + img_url + ')');
+	preview_box.attr('src', img_url);
+	preview_box.attr('margin-top', preview_box.height()*-1);
+	preview_box.attr('margin-left', preview_box.width()*-1);
+
 	preview_box.fadeIn(100);
 	preview_bg.fadeIn(100);
 
