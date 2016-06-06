@@ -27,6 +27,13 @@ html{overflow-y: scroll;}
 	line-height: 50px;
 }
 
+.navigation sub{
+	display: inline-block;
+	font-style: italic;
+	margin-left: 5px;
+	margin-bottom: 18px;
+}
+
 .navigation .title:first-letter{
 	color: #3CC76A;
 }

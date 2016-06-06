@@ -19,7 +19,10 @@ function add_images(img_arr){
 		// element.width(image_width);
 		// element.height(image_height);
 
-		element.css('background-image', 'url(' + thumb_url + ')');
+		element.css('background-image', 'url(' + encodeURI(thumb_url) + ')');
+
+		console.log("Loading thumbnail: "+thumb_url);
+
 		element.css('display', 'none');
 		container.append(element);
 		element.fadeIn(fade_in_time*2);
@@ -121,7 +124,7 @@ function load_categories(){
 	            navbar.append(element);
 	        });
 
-	        $('li').first().addClass('active');
+	        $('li:nth-child(4)').first().addClass('active');
 
 	        active_category = navbar.find('.active a').html();
 
